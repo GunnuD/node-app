@@ -1,10 +1,13 @@
-//importing node framework
-var express = require(‘express’);
- 
-var app = express();//Respond with "hello world" for requests that hit our root "/"
-app.get(‘/’, function (req, res) {
- res.send(‘hello world’);
-});//listen to port 3000 by default
-app.listen(process.env.PORT || 3000);
- 
-module.exports = app;
+var express = require('express')
+var app = express()
+
+app.set('port', (process.env.PORT || 5000))
+app.use(express.static(__dirname + '/public'))
+
+app.get('/', function(request, response) {
+  response.send('Hello Testing DevOps Node! JS Project Hello How are you ? welcome to devOps Project')
+}) 
+
+app.listen(app.get('port'), function() {
+  console.log("Node app is running at localhost:" + app.get('port'))
+})
